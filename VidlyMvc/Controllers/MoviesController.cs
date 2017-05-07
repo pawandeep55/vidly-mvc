@@ -7,8 +7,21 @@ using VidlyMvc.Models;
 
 namespace VidlyMvc.Controllers
 {
+   
     public class MoviesController : Controller
     {
+        private ApplicationDbContext _context;
+
+        public MoviesController()
+        {
+            _context = new ApplicationDbContext();//this context is a disposable context so we need to properly dispose via Dispose()
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
+
         // GET: Movie
         public ActionResult Index()
         {
