@@ -1,0 +1,92 @@
+﻿@model IEnumerable<VidlyMvc.Models.Movie>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Movies</h2>
+
+@Html.ActionLink("New Movie","New","Movies",null,new { @class = "btn btn-primary" })
+<br/>
+<hr/>
+
+@if (!Model.Any())
+{
+    <p>we don't have any movies yet</p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+
+        
+            <tr>
+                <th>Movies</th>
+                <th>Genre</th>
+                <th>Actions</th>
+            </tr>
+        
+        <tbody>
+
+            @foreach (var movie in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink(movie.Name, "details", "Movies", new { id=movie.Id } , null)</td>
+                    <td>@movie.Genre.Name</td>
+                    <td>@Html.ActionLink("Edit","Edit","Movies",new { id = movie.Id },
+                       new {@class="btn btn-info"} 
+                       )
+                   @* @Html.ActionLink("Delete", "Delete", "Movies", new { id = movie.Id },
+                       new { @class = "btn btn-warning" , data-toggle = "modal",role="button" })*@
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Delete</button>
+                        @*<a id="deleteItem" class="deleteItem" data-target="#basic"
+                           data-toggle="modal" data-id=@movie.Id>Delete</a>*@
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+
+   @* <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Some text in the modal.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>*@
+    <div id="myModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Confirmation</h4>
+                </div>
+                <div class="modal-body">
+                   
+                    <h2 class="text-danger">Are you sure</h2>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+
+

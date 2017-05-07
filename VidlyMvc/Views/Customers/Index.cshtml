@@ -5,7 +5,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Customers</h2>
+
+@Html.ActionLink("New Customer", "New", "Customers", null, new { @class = "btn btn-primary" })
+<br />
+<hr />
 
 @if (!Model.Any())
 {
@@ -19,6 +23,7 @@ else
             <tr>
                <th>Customers</th>
                 <th>Discount</th>
+                <th>Action</th>
             </tr>
             
         </thead>
@@ -27,8 +32,15 @@ else
             @foreach (var cus in Model)
             {
                 <tr>
-                    <td>@Html.ActionLink(cus.Name, "Edit", "Customers", new { id=cus.Id }, null)</td>
+                    <td>@Html.ActionLink(cus.Name, "details", "Customers", new { id=cus.Id }, null)</td>
                     <td>@cus.MembershipType.Name</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", "Customers", new { id = cus.Id },
+                       new { @class = "btn btn-info" }
+                       )
+                    @Html.ActionLink("Delete", "Delete", "Customers", new { id = cus.Id },
+                       new { @class = "btn btn-warning" })
+                </td>
                 </tr>
             }
         </tbody>
