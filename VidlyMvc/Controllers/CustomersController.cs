@@ -31,7 +31,7 @@ namespace VidlyMvc.Controllers
         public ActionResult Details(int id)
         {
 
-            var customers = _context.Customers;
+            var customers = _context.Customers.Include(c=>c.MembershipType);
 
             var lin = (from cus in customers
                        where cus.Id == id
@@ -39,7 +39,8 @@ namespace VidlyMvc.Controllers
             var customer = lin.SingleOrDefault();
             //var customer = _context.Customers.SingleOrDefault(c => c.Id == id);//just oneline for above so many lines(lambda) 
             if (customer == null) { return HttpNotFound(); }
-            return Content("id u entered is " + customer.Id + "name is " + customer.Name);
+            // return Content("id u entered is " + customer.Id + "name is " + customer.Name);
+            return View(customer);
         }
         //private IEnumerable<Customer> getCustomers()
         //{

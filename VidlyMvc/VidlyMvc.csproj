@@ -224,9 +224,26 @@
     <Compile Include="Migrations\201705070614403_UpdateSetNamepropertyOfMembershipTypeEntity.Designer.cs">
       <DependentUpon>201705070614403_UpdateSetNamepropertyOfMembershipTypeEntity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705070632107_alterAddDobToCustomers.cs" />
+    <Compile Include="Migrations\201705070632107_alterAddDobToCustomers.Designer.cs">
+      <DependentUpon>201705070632107_alterAddDobToCustomers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705070720375_AlterPlusCreateMoviesNGenre.cs" />
+    <Compile Include="Migrations\201705070720375_AlterPlusCreateMoviesNGenre.Designer.cs">
+      <DependentUpon>201705070720375_AlterPlusCreateMoviesNGenre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705070722003_insertPopulateGenres.cs" />
+    <Compile Include="Migrations\201705070722003_insertPopulateGenres.Designer.cs">
+      <DependentUpon>201705070722003_insertPopulateGenres.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705070724576_alterInttobyteMoviesNgenre.cs" />
+    <Compile Include="Migrations\201705070724576_alterInttobyteMoviesNgenre.Designer.cs">
+      <DependentUpon>201705070724576_alterInttobyteMoviesNgenre.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MembershipType.cs" />
@@ -294,11 +311,11 @@
     <Content Include="Views\Movies\Index.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\Customers\Index.cshtml" />
+    <Content Include="Views\Customers\Details.cshtml" />
+    <Content Include="Views\Movies\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Customer\" />
-    <Folder Include="Views\Movie\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -336,6 +353,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705070614403_UpdateSetNamepropertyOfMembershipTypeEntity.resx">
       <DependentUpon>201705070614403_UpdateSetNamepropertyOfMembershipTypeEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705070632107_alterAddDobToCustomers.resx">
+      <DependentUpon>201705070632107_alterAddDobToCustomers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705070720375_AlterPlusCreateMoviesNGenre.resx">
+      <DependentUpon>201705070720375_AlterPlusCreateMoviesNGenre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705070722003_insertPopulateGenres.resx">
+      <DependentUpon>201705070722003_insertPopulateGenres.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705070724576_alterInttobyteMoviesNgenre.resx">
+      <DependentUpon>201705070724576_alterInttobyteMoviesNgenre.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

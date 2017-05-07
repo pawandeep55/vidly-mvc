@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using VidlyMvc.Models;
+using System.Data.Entity;
 
 namespace VidlyMvc.Controllers
 {
@@ -26,33 +27,33 @@ namespace VidlyMvc.Controllers
         public ActionResult Index()
         {
 
-            var movies = getMovies();
+            var movies = _context.Movies.Include(m => m.Genre).ToList();
 
             return View(movies);
 
 
         }
 
-        public ActionResult Random()
+        /*public ActionResult Random()
         {
             Movie movie = new Movie() { Name = "Shrek!" };
 
             return View(movie);
-        }
+        }*/
 
         public ActionResult Details(int id)
         {
 
-            var movies = getMovies();
+            var movie =_context.Movies.Include(m=>m.Genre).SingleOrDefault(m=>m.Id==id);
 
-            var lin = (from mov in movies
+            /*var lin = (from mov in movies
                        where mov.Id == id
                        select mov);
-            var v = lin.SingleOrDefault();
-            if (v == null) { return HttpNotFound(); }
-            return Content("id u entered is " + id + "name is " + v.Name);
+            var v = lin.SingleOrDefault();*/
+            if (movie == null) { return HttpNotFound(); }
+            return View(movie);
         }
-        public IEnumerable<Movie> getMovies()
+        /*public IEnumerable<Movie> getMovies()
         {
             return new List<Movie>
             {
@@ -60,6 +61,6 @@ namespace VidlyMvc.Controllers
             new Movie{ Id = 2, Name = "fast and furious 8" },
             };
             // return new List<Movie>() ;
-        }
+        }*/
     }
 }
