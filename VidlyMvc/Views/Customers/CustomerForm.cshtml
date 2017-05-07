@@ -16,21 +16,31 @@ else
 {
     <div class="form-horizontal">
         <hr />
+        @*@Html.ValidationSummary(true,"please fix the following errors",new {@class="text-danger"})true, "", new { @class = "text-danger" })*@
         <div class="form-group">
             @Html.LabelFor(c=>c.Customer.Name, new { @class = "control-label col-md-2" })
-            @Html.TextBoxFor(c => c.Customer.Name, new { @class = "form-control col-md-10" })
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(c => c.Customer.Dob, new { @class = "control-label col-md-2" })
-            @Html.TextBoxFor(c => c.Customer.Dob,"{0:d MMM yyyy}",new { @class = "form-control col-md-10" })
-            
-        </div>
+            <div class="col-md-10">
+                @Html.TextBoxFor(c => c.Customer.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(c => c.Customer.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+       
         
         <div class="form-group">
             @Html.LabelFor(c => c.Customer.MembershipTypeId, new { @class = "control-label col-md-2" })
-            @Html.DropDownListFor(c=>c.Customer.MembershipTypeId,new SelectList(Model.MembershipTypes,"Id","Name")
-           ,"Select Membership Type", new {@class="form-control", style = "width: 200px;" })
-            
+            <div class="col-md-10">
+                @Html.DropDownListFor(c => c.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name")
+           , "Select Membership Type", new { @class = "form-control", style = "width: 200px;" })
+                @Html.ValidationMessageFor(c => c.Customer.MembershipTypeId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        <div class="form-group">
+            @Html.LabelFor(c => c.Customer.Dob, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(c => c.Customer.Dob, "{0:d MMM yyyy}", new { @class = "form-control" })
+                @Html.ValidationMessageFor(c => c.Customer.Dob, "", new { @class = "text-danger" })
+            </div>
+
         </div>
         <div class="form-group">
             @Html.Label(" ", new { @class = "col-md-2" })
@@ -43,6 +53,7 @@ else
             </div>
         </div>
      </div>
+     @Html.AntiForgeryToken()
      @Html.HiddenFor(c => c.Customer.Id);
      <button type="submit" class="btn btn-primary">Save</button>    
 
@@ -50,4 +61,6 @@ else
 
 
 
-
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    }
