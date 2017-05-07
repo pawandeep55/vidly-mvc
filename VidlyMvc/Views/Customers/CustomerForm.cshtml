@@ -1,0 +1,46 @@
+﻿@model VidlyMvc.ViewModels.CustomerFormViewModel
+@{
+    ViewBag.Title = "New";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>New Customer</h2>
+@using (Html.BeginForm("Save", "Customers"))
+{
+    <div class="form-horizontal">
+        <hr />
+        <div class="form-group">
+            @Html.LabelFor(c=>c.Customer.Name, new { @class = "control-label col-md-2" })
+            @Html.TextBoxFor(c => c.Customer.Name, new { @class = "form-control col-md-10" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(c => c.Customer.Dob, new { @class = "control-label col-md-2" })
+            @Html.TextBoxFor(c => c.Customer.Dob,"{0:d MMM yyyy}",new { @class = "form-control col-md-10" })
+            
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(c => c.Customer.MembershipTypeId, new { @class = "control-label col-md-2" })
+            @Html.DropDownListFor(c=>c.Customer.MembershipTypeId,new SelectList(Model.MembershipTypes,"Id","Name")
+           ,"Select Membership Type", new {@class="form-control", style = "width: 200px;" })
+            
+        </div>
+        <div class="form-group">
+            @Html.Label(" ", new { @class = "col-md-2" })
+            <div class="checkbox col-md-10">
+
+                <label>
+                    @Html.CheckBoxFor(c => c.Customer.IsSubscribedToNewsLetters)@*, new { @class = "checkbox col-md-4" })*@
+                    <span class="control-label" style="text-align:left">Subscribed To newsletter?</span>
+                </label>
+            </div>
+        </div>
+     </div>
+     @Html.HiddenFor(c => c.Customer.Id);
+     <button type="submit" class="btn btn-primary">Save</button>    
+
+        }
+
+
+
+
