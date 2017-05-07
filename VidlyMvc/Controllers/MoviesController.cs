@@ -8,7 +8,7 @@ using System.Data.Entity;
 using VidlyMvc.ViewModels;
 namespace VidlyMvc.Controllers
 {
-   
+
     public class MoviesController : Controller
     {
         private ApplicationDbContext _context;
@@ -41,14 +41,24 @@ namespace VidlyMvc.Controllers
             var viewModel = new MovieFormViewModel
             {
                 Genre = Genre,
-               // Movie=new Movie()
+                Movie=new Movie()
             };
             return View("MovieForm", viewModel);
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Movie movie)
         {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new MovieFormViewModel
+                {
+                    Movie = movie,
+                    Genre = _context.Genre.ToList()
+                };
+            return View("MovieForm", viewModel);
+            }
             if (movie.Id == 0)
             {
                 movie.DateAdded = DateTime.Now;
@@ -77,7 +87,7 @@ namespace VidlyMvc.Controllers
             }
             var viewModel = new MovieFormViewModel
             {
-                Movie= movie,
+                Movie = movie,
                 Genre = _context.Genre.ToList()
             };
             return View("MovieForm", viewModel);
@@ -99,7 +109,7 @@ namespace VidlyMvc.Controllers
         public ActionResult Details(int id)
         {
 
-            var movie =_context.Movies.Include(m=>m.Genre).SingleOrDefault(m=>m.Id==id);
+            var movie = _context.Movies.Include(m => m.Genre).SingleOrDefault(m => m.Id == id);
 
             /*var lin = (from mov in movies
                        where mov.Id == id
