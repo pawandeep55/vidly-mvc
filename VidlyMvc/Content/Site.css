@@ -24,6 +24,14 @@ textarea {
 }
 
 .input-validation-error {
-    border: 2px solid red;
+    border-color: #d9534f;
+}
 
+.input-validation-success {
+    border-color: #3fad46;
+}
+.navbar .navbar-nav > li > a {
+    padding: 8px 12px;
+    background-color: slateblue;
+    color: cornsilk;
 }

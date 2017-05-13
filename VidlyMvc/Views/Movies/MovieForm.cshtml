@@ -5,14 +5,15 @@
 }
 
 
-@if (Model.Movie == null)
+<h2>@Model.Title</h2>
+@*@if (Model.Movie == null)
 {
     <h2>New Movie</h2>
 }
 else
 {
     <h2>Edit Movie</h2>
-}
+}*@
 
 @using (Html.BeginForm("save", "Movies"))
 {
@@ -20,38 +21,38 @@ else
         <hr />
         @Html.ValidationSummary()
         <div class="form-group">
-            @Html.LabelFor(c => c.Movie.Name, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(c => c.Name, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(c => c.Movie.Name, new { @class = "form-control" })
-                @Html.ValidationMessageFor(c=>c.Movie.Name,"",new { @class="text-danger"})
+                @Html.TextBoxFor(c => c.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(c=>c.Name,"",new { @class="text-danger"})
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(c => c.Movie.ReleaseDate, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(c => c.ReleaseDate, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(c => c.Movie.ReleaseDate, "{0:d MMM yyyy}", new { @class = "form-control" ,placeholder="05-nov-2013" })
-              @Html.ValidationMessageFor(c => c.Movie.ReleaseDate, "", new { @class = "text-danger"  })
+                @Html.EditorFor(c => c.ReleaseDate, new { @class = "form-control"  })
+              @Html.ValidationMessageFor(c => c.ReleaseDate, "", new { @class = "text-danger"  })
                 </div>
             </div>
         <div class="form-group">
-            @Html.LabelFor(c => c.Movie.GenreId, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(c => c.GenreId, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(c => c.Movie.GenreId, new SelectList(Model.Genre, "Id", "Name")
+                @Html.DropDownListFor(c => c.GenreId, new SelectList(Model.Genre, "Id", "Name")
            , "Select Genre", new { @class = "form-control", style = "width: 200px;" })
-                @Html.ValidationMessageFor(c => c.Movie.GenreId, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(c => c.GenreId, "", new { @class = "text-danger" })
                 </div>
             </div>
         <div class="form-group">
-            @Html.LabelFor(c => c.Movie.NumberInStock, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(c => c.NumberInStock, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(c => c.Movie.NumberInStock, new { @class = "form-control" })
-                @Html.ValidationMessageFor(c => c.Movie.NumberInStock, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(c => c.NumberInStock, new { @class = "form-control" })
+                @Html.ValidationMessageFor(c => c.NumberInStock, "", new { @class = "text-danger" })
                 </div>
             </div>
     </div>
 
         @Html.AntiForgeryToken()
-        @Html.HiddenFor(c => c.Movie.Id)
+        @Html.HiddenFor(c => c.Id)
         <button type="submit" class="btn btn-primary">Save</button>    
 
    

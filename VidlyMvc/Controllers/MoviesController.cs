@@ -41,20 +41,21 @@ namespace VidlyMvc.Controllers
             var viewModel = new MovieFormViewModel
             {
                 Genre = Genre,
-                Movie=new Movie()
+               // Movie=new Movie()
             };
             return View("MovieForm", viewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        //this will be called after submitting new or existing record//new or edit action submit
         public ActionResult Save(Movie movie)
         {
             if (!ModelState.IsValid)
             {
-                var viewModel = new MovieFormViewModel
+                var viewModel = new MovieFormViewModel(movie)
                 {
-                    Movie = movie,
+                   // Movie = movie,
                     Genre = _context.Genre.ToList()
                 };
             return View("MovieForm", viewModel);
@@ -77,6 +78,7 @@ namespace VidlyMvc.Controllers
             return RedirectToAction("Index", "Movies");
         }
 
+        //called for editing existing records
         public ActionResult Edit(int id)
         {
             var movie = _context.Movies.SingleOrDefault(c => c.Id == id);
@@ -85,9 +87,9 @@ namespace VidlyMvc.Controllers
             {
                 return HttpNotFound();
             }
-            var viewModel = new MovieFormViewModel
+            var viewModel = new MovieFormViewModel(movie)
             {
-                Movie = movie,
+                //Movie = movie,
                 Genre = _context.Genre.ToList()
             };
             return View("MovieForm", viewModel);

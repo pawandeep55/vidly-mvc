@@ -37,7 +37,7 @@ else
         <div class="form-group">
             @Html.LabelFor(c => c.Customer.Dob, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(c => c.Customer.Dob, "{0:d MMM yyyy}", new { @class = "form-control" })
+                @Html.EditorFor(c => c.Customer.Dob, "{0:d MMM yyyy}", new { @class = "form-control" })
                 @Html.ValidationMessageFor(c => c.Customer.Dob, "", new { @class = "text-danger" })
             </div>
 
