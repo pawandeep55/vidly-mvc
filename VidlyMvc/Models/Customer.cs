@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace VidlyMvc.Models
 {
-    [Bind(Exclude="Id")]
+   // [Bind(Exclude="Id")]
     public class Customer
     {
         public int Id { get; set; }
@@ -24,6 +24,7 @@ namespace VidlyMvc.Models
         public byte MembershipTypeId { get; set; }
 
         [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         [Display(Name ="Date of birth")]
         [Min18YearsIfAMember]
         public DateTime? Dob { get; set; }
